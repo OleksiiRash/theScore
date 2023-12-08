@@ -18,7 +18,7 @@ public class LeaguesSteps extends CommonMethods {
             By closeButtonLocator = By.id("dismiss_modal");
             if (!driver.findElements(closeButtonLocator).isEmpty()) {
                 welcomePage.closePopup();
-                System.out.println("Closed the popup.");
+                System.out.println("Closed the popup");
             }
         } catch (Exception e) {
             System.out.println("An error occurred while checking or closing the popup: " + e.getMessage());
@@ -34,15 +34,12 @@ public class LeaguesSteps extends CommonMethods {
                 System.out.println("Opened the Profile page");
                 profilePage.ensureSwitchBetModeIsOff();
                 System.out.println("Switched off the Bet Mode");
+                leaguesPage.backNavigation.click();
             } else {
-                System.out.println("Spotlight element is not present. Skipping ProfileImageButton click.");
+                System.out.println("spotlightElement is not displayed");
             }
         } catch (Exception e) {
             System.out.println("An error occurred while checking the spotlight element: " + e.getMessage());
-        } finally {
-            // Perform backNavigation regardless of the outcome
-            leaguesPage.backNavigation.click();
-            System.out.println("Performed back navigation");
         }
     }
 
