@@ -42,8 +42,22 @@ public class WelcomePage extends CommonMethods {
     @AndroidFindBy(xpath = "//*[@text='Allow Location']")
     public MobileElement allowLocation;
 
-    public void handleLocationPopup(String action) {
+    @AndroidFindBy(id = "dialog_container")
+    public MobileElement allowTheScoreAccessPopup;
+
+    @AndroidFindBy(id = "permission_deny_button")
+    public MobileElement allowTheScoreAccessDeny;
+
+    @AndroidFindBy(id = "permission_allow_button")
+    public MobileElement allowTheScoreAccessAllow;
+
+    import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+    public void handleLocationPopup(String action, String scoreAccessAction) {
         try {
+            WebDriverWait wait = new WebDriverWait(driver, 10);
+
             if (locationPopup.isDisplayed()) {
                 if ("later".equalsIgnoreCase(action)) {
                     noLocation.click();
@@ -51,12 +65,24 @@ public class WelcomePage extends CommonMethods {
                 } else if ("allow".equalsIgnoreCase(action)) {
                     allowLocation.click();
                     System.out.println("Clicked 'Allow Location' on location popup.");
+
+                    wait.until(ExpectedConditions.visibilityOf(allowTheScoreAccessPopup));
+
+                    if ("deny".equalsIgnoreCase(scoreAccessAction)) {
+                        allowTheScoreAccessDeny.click();
+                        System.out.println("Denied the Score Access.");
+                    } else if ("allow".equalsIgnoreCase(scoreAccessAction)) {
+                        allowTheScoreAccessAllow.click();
+                        System.out.println("Allowed the Score Access.");
+                    }
                 }
             }
         } catch (Exception e) {
-            System.out.println("Location popup was not displayed or an error occurred: " + e.getMessage());
+            System.out.println("An error occurred: " + e.getMessage());
         }
     }
+
+
 
     @AndroidFindBy(xpath = "//*[@text='Choose your favorite teams']")
     public MobileElement chooseFavoriteTeamsTxt;

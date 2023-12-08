@@ -50,7 +50,7 @@ public class WelcomeSteps extends CommonMethods {
     @When("I select teams as follows")
     public void i_select_teams_as_follows(io.cucumber.datatable.DataTable dataTable) {
 
-        welcomePage.handleLocationPopup("later");
+        welcomePage.handleLocationPopup("allow", "deny");
 
         List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
         for (Map<String, String> row : rows) {
