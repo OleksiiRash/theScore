@@ -58,7 +58,6 @@ public class WelcomePage extends CommonMethods {
         }
     }
 
-
     @AndroidFindBy(xpath = "//*[@text='Choose your favorite teams']")
     public MobileElement chooseFavoriteTeamsTxt;
 

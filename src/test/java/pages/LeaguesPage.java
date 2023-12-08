@@ -36,6 +36,9 @@ public class LeaguesPage extends CommonMethods {
         return null;
     }
 
+    @AndroidFindBy(xpath = "//*[@text='Spotlight']")
+    public MobileElement spotlightElement;
+
     @AndroidFindBy(id = "txt_rank")
     public MobileElement standingsContainerElement;
 
@@ -50,6 +53,10 @@ public class LeaguesPage extends CommonMethods {
 
     @AndroidFindBy(id = "Navigate up")
     public MobileElement backNavigation;
+
+    @AndroidFindBy(className = "android.widget.HorizontalScrollView")
+    public MobileElement horizontalScrollView;
+
 
 
     public LeaguesPage() {

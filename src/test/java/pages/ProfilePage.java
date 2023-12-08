@@ -22,7 +22,24 @@ public class ProfilePage extends CommonMethods {
 
     @AndroidFindBy(id = "switch_bet_mode")
     public MobileElement switchBetMode;
-    
+
+    @AndroidFindBy(className = "android.widget.ImageButton")
+    public MobileElement ProfileImageButton;
+
+    public void ensureSwitchBetModeIsOff() {
+        try {
+            String switchStatus = switchBetMode.getAttribute("checked");
+
+            if ("true".equals(switchStatus)) {
+                switchBetMode.click();
+                System.out.println("Switch was on. It has been turned off");
+            } else {
+                System.out.println("Switch is already off. No action taken");
+            }
+        } catch (Exception e) {
+            System.out.println("An error occurred while checking or toggling the switch: " + e.getMessage());
+        }
+    }
 
     public ProfilePage() {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);

@@ -4,6 +4,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import utils.CommonMethods;
 
 public class LeaguesSteps extends CommonMethods {
@@ -11,9 +13,40 @@ public class LeaguesSteps extends CommonMethods {
     @Given("theScore app is launched on the device")
     public void the_score_app_is_launched_on_the_device() {
         launchTheApp();
+
+        try {
+            By closeButtonLocator = By.id("dismiss_modal");
+            if (!driver.findElements(closeButtonLocator).isEmpty()) {
+                welcomePage.closePopup();
+                System.out.println("Closed the popup.");
+            }
+        } catch (Exception e) {
+            System.out.println("An error occurred while checking or closing the popup: " + e.getMessage());
+        }
     }
 
-    @When("I navigate to the {string} page")
+    @When("I check for the Spotlight Betting News")
+    public void i_check_for_the_spotlight_betting_news() {
+        try {
+            // Check if the spotlightElement is displayed
+            if (leaguesPage.spotlightElement.isDisplayed()) {
+                profilePage.ProfileImageButton.click();
+                System.out.println("Opened the Profile page");
+                profilePage.ensureSwitchBetModeIsOff();
+                System.out.println("Switched off the Bet Mode");
+            } else {
+                System.out.println("Spotlight element is not present. Skipping ProfileImageButton click.");
+            }
+        } catch (Exception e) {
+            System.out.println("An error occurred while checking the spotlight element: " + e.getMessage());
+        } finally {
+            // Perform backNavigation regardless of the outcome
+            leaguesPage.backNavigation.click();
+            System.out.println("Performed back navigation");
+        }
+    }
+
+    @Then("I navigate to the {string} page")
     public void i_navigate_to_the_page(String pageName) {
         if (pageName.equals("Leagues")) {
             leaguesPage.navigationLeaguesButton.click();
@@ -67,19 +100,40 @@ public class LeaguesSteps extends CommonMethods {
 
     @When("I navigate to the {string} tab")
     public void i_navigate_to_the_tab(String tab) {
-        if (leaguesPage.statsTab.isDisplayed()) {
-            leaguesPage.statsTab.click();
-        } else {
-            System.out.println("The '" + tab + "' tab is not displayed. Initiating back navigation.");
+        try {
+            if (leaguesPage.horizontalScrollView.findElement(By.xpath("//*[contains(@content-desc, 'Stats')]")).isDisplayed()) {
+                leaguesPage.statsTab.click();
+            } else {
+                leaguesPage.backNavigation.click();
+            }
+        } catch (NoSuchElementException e) {
             leaguesPage.backNavigation.click();
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
         }
     }
 
     @Then("the {string} tab is displayed correctly")
     public void the_tab_is_displayed_correctly(String expectedTab) {
-        String actualActiveTab = leaguesPage.getCurrentSubTabName();
-        boolean isCorrectTab = actualActiveTab != null && actualActiveTab.contains("STATS");
-        Assert.assertTrue("Expected active tab to contain 'STATS', but found: '" + actualActiveTab + "'", isCorrectTab);
+        try {
+            // Check if the statsTab is displayed within the HorizontalScrollView
+            if (leaguesPage.horizontalScrollView.findElement(By.xpath("//*[contains(@content-desc, 'Stats')]")).isDisplayed()) {
+                String actualActiveTab = leaguesPage.getCurrentSubTabName();
+                boolean isCorrectTab = actualActiveTab != null && actualActiveTab.contains("STATS");
+                Assert.assertTrue("Expected active tab to contain 'STATS', but found: '" + actualActiveTab + "'", isCorrectTab);
+            } else {
+                // If the statsTab is not displayed, perform backNavigation click
+                leaguesPage.backNavigation.click();
+                Assert.fail("Stats tab is not present, navigating back.");
+            }
+        } catch (NoSuchElementException e) {
+            // If the statsTab is not found within the ScrollView, click backNavigation
+            leaguesPage.backNavigation.click();
+            Assert.fail("Stats tab is not found, navigating back.");
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+            Assert.fail("An unexpected error occurred: " + e.getMessage());
+        }
     }
 
     @When("I initiate back navigation")
