@@ -25,7 +25,10 @@ Two feature files were created, adhering to the requirements of the coding techn
 
 **Challenges and Solutions:**
 
-The primary challenge was to demonstrate the capability of setting up a test framework from scratch, showing its structure and potential for future expansion. The current scope was intentionally limited to the main tests required in the coding technical interview, rather than covering a comprehensive range of functionalities.
+* The primary challenge was to demonstrate the capability of setting up a test framework from scratch, showing its structure and potential for future expansion. The current scope was intentionally limited to the main tests required in the coding technical interview, rather than covering a comprehensive range of functionalities.
+
+
+* In some leagues such as NBA or NHL in the Score tab not present the Stats tab - all 6 tests executes correct, but two of them not verify the presence of the Stats tab. 
 
 **Future Enhancements:**
 
