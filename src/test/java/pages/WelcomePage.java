@@ -51,9 +51,6 @@ public class WelcomePage extends CommonMethods {
     @AndroidFindBy(id = "permission_allow_button")
     public MobileElement allowTheScoreAccessAllow;
 
-    import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
     public void handleLocationPopup(String action, String scoreAccessAction) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -81,8 +78,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
             System.out.println("An error occurred: " + e.getMessage());
         }
     }
-
-
 
     @AndroidFindBy(xpath = "//*[@text='Choose your favorite teams']")
     public MobileElement chooseFavoriteTeamsTxt;
