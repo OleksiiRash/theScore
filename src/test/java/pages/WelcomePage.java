@@ -94,8 +94,8 @@ public class WelcomePage extends CommonMethods {
     String elementXPathTemplate = "//*[@text='%s']";
 
     public MobileElement selectElement(String elementName) {
-        WebDriverWait wait = new WebDriverWait(driver, 20); // waits for up to 20 seconds
-        String xpath = String.format("//android.widget.TextView[@text='%s']", elementName); // Refined XPath
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        String xpath = String.format("//android.widget.TextView[@text='%s']", elementName);
         MobileElement element = (MobileElement) wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
 
         // Scroll to the element if not visible
