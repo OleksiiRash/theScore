@@ -33,11 +33,30 @@ public class WelcomePage extends CommonMethods {
     @AndroidFindBy(xpath = "//*[@text='Continue']")
     public MobileElement continueBtn;
 
+    @AndroidFindBy(id = "img_location")
+    public MobileElement locationPopup;
+
     @AndroidFindBy(xpath = "//*[@text='Maybe Later']")
     public MobileElement noLocation;
 
     @AndroidFindBy(xpath = "//*[@text='Allow Location']")
     public MobileElement allowLocation;
+
+    public void handleLocationPopup(String action) {
+        try {
+            if (locationPopup.isDisplayed()) {
+                if ("later".equalsIgnoreCase(action)) {
+                    noLocation.click();
+                    System.out.println("Clicked 'Maybe Later' on location popup.");
+                } else if ("allow".equalsIgnoreCase(action)) {
+                    allowLocation.click();
+                    System.out.println("Clicked 'Allow Location' on location popup.");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Location popup was not displayed or an error occurred: " + e.getMessage());
+        }
+    }
 
     @AndroidFindBy(xpath = "//*[@text='Choose your favorite teams']")
     public MobileElement chooseFavoriteTeamsTxt;
