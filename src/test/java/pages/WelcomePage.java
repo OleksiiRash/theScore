@@ -36,48 +36,28 @@ public class WelcomePage extends CommonMethods {
     @AndroidFindBy(id = "img_location")
     public MobileElement locationPopup;
 
-    @AndroidFindBy(xpath = "//*[@text='Maybe Later']")
+    @AndroidFindBy(id ="btn_disallow")
     public MobileElement noLocation;
 
-    @AndroidFindBy(xpath = "//*[@text='Allow Location']")
+    @AndroidFindBy(id = "btn_allow")
     public MobileElement allowLocation;
 
-    @AndroidFindBy(id = "dialog_container")
-    public MobileElement allowTheScoreAccessPopup;
-
-    @AndroidFindBy(id = "permission_deny_button")
-    public MobileElement allowTheScoreAccessDeny;
-
-    @AndroidFindBy(id = "permission_allow_button")
-    public MobileElement allowTheScoreAccessAllow;
-
-    public void handleLocationPopup(String action, String scoreAccessAction) {
+    public void handleLocationPopup(String action) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, 10);
-
             if (locationPopup.isDisplayed()) {
                 if ("later".equalsIgnoreCase(action)) {
                     noLocation.click();
-                    System.out.println("Clicked 'Maybe Later' on location popup.");
+                    System.out.println("Clicked 'Maybe Later' on location popup");
                 } else if ("allow".equalsIgnoreCase(action)) {
                     allowLocation.click();
-                    System.out.println("Clicked 'Allow Location' on location popup.");
-
-                    wait.until(ExpectedConditions.visibilityOf(allowTheScoreAccessPopup));
-
-                    if ("deny".equalsIgnoreCase(scoreAccessAction)) {
-                        allowTheScoreAccessDeny.click();
-                        System.out.println("Denied the Score Access.");
-                    } else if ("allow".equalsIgnoreCase(scoreAccessAction)) {
-                        allowTheScoreAccessAllow.click();
-                        System.out.println("Allowed the Score Access.");
-                    }
+                    System.out.println("Clicked 'Allow Location' on location popup");
                 }
             }
         } catch (Exception e) {
-            System.out.println("An error occurred: " + e.getMessage());
+            System.out.println("Location popup was not displayed or an error occurred: " + e.getMessage());
         }
     }
+
 
     @AndroidFindBy(xpath = "//*[@text='Choose your favorite teams']")
     public MobileElement chooseFavoriteTeamsTxt;
@@ -94,7 +74,7 @@ public class WelcomePage extends CommonMethods {
     String elementXPathTemplate = "//*[@text='%s']";
 
     public MobileElement selectElement(String elementName) {
-        WebDriverWait wait = new WebDriverWait(driver, 5);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
         String xpath = String.format("//android.widget.TextView[@text='%s']", elementName);
         MobileElement element = (MobileElement) wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
 

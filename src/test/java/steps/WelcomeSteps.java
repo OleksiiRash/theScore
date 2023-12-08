@@ -29,6 +29,7 @@ public class WelcomeSteps extends CommonMethods {
 
     @Then("the {string} page is displayed")
     public void the_page_is_displayed(String page) {
+        welcomePage.handleLocationPopup("later"); // handling with location pop-up
         MobileElement favoritePage = welcomePage.selectElement(page);
         Assert.assertTrue(page + "page not displayed", favoritePage.isDisplayed());
     }
@@ -49,8 +50,6 @@ public class WelcomeSteps extends CommonMethods {
 
     @When("I select teams as follows")
     public void i_select_teams_as_follows(io.cucumber.datatable.DataTable dataTable) {
-
-        welcomePage.handleLocationPopup("later", "");
 
         List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
         for (Map<String, String> row : rows) {
