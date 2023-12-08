@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
         tags = "@leagues",
         //strict=true,
         //monochrome = true,
-        plugin = {"pretty"}
+        plugin = {"pretty", "html:target/cucumber.html", "json:target/cucumber.json"}
 )
 public class RunnerClass {
 
