@@ -1,3 +1,9 @@
+# Exclude the target folder
+target/
+
+# Include cucumber.html in the target folder
+!target/cucumber.html
+
 ### IntelliJ IDEA ###
 .idea/modules.xml
 .idea/jarRepositories.xml
