@@ -8,10 +8,10 @@ It is a robust and efficient test automation framework developed from scratch, i
 
 #### Prerequisites:
 
-* **Java: Version 11**
-* **Appium Server: Version 1.9.1**
-* **Maven**
-* **Android Studio**
+* **Java 11**
+* **Appium 1.9.1**
+* **Maven 3.9.3**
+* **Android Studio Giraffe | 2022.3.1 Patch 1**
 
 #### Dependencies
 
@@ -26,6 +26,71 @@ The project relies on several Maven dependencies, including:
 * **AssertJ** (for fluent assertions)
 * **Apache Commons Lang** (for Java utility classes)
 
+
+### **Framework Setup Guide**
+
+**Prerequisites**
+- Windows Operating System
+- Administrative access on the machine
+
+**Environment Setup**
+
+1. Install Node.js and NPM
+- Download and install Node.js from [Node.js website](https://nodejs.org/)
+- Verify the installation in Command Prompt: `node -v` `npm -v`
+
+2. Install Java JDK
+
+- Download the Java JDK from [Oracle's website](https://www.oracle.com/java/technologies/javase-downloads.html).
+- Install the JDK and note down the installation path.
+- Set the `JAVA_HOME` environment variable
+
+3. Install Maven
+
+- Download and install Maven 3.9.3 from [Apache Maven Project](https://maven.apache.org/download.cgi).
+- Extract and set the Maven path in the Environment Variables, similar to `JAVA_HOME`
+
+4. Install and Configure Appium
+
+- Install Appium via NPM: `npm install -g appium@1.9.1`
+- Optionally, install Appium Doctor: `npm install -g appium-doctor`
+- Run Appium Doctor to verify the installation: `appium-doctor`
+
+5. Install Android Studio and Set Up the Emulator
+
+- Download and install Android Studio from [Android Developer website](https://developer.android.com/studio/).
+- Follow the installation instructions and make sure to install the Android Virtual Device component.
+- Open Android Studio and install the necessary SDKs and tools through the SDK Manager: 
+
+
+- SDK Platforms: 
+
+
+- Android SDK Platform 34 (Android API 34)
+- Google APIs Intel x86 Atom System Image (Android 8.0 ("Oreo"))
+
+
+- SDK Tools:
+
+
+- Android SDK Build-Tools 34
+- Android Emulator hypervisor driver (installer)
+- Intel x86 Emulator Accelerator (HAXM Installer)
+
+
+- Set the `ANDROID_HOME` under user variable `C:\Users\...\AppData\Local\Android\Sdk`
+
+6. Edit path variable under system variable as shown below:
+
+- C:\Program Files\Java\jdk11.0.20\bin
+- C:\Program Files\apache-maven-3.9.3\bin
+- C:\Users\\...\AppData\Local\Android\Sdk\emulator
+- C:\Users\\...\AppData\Local\Android\Sdk\tools
+- C:\Users\\...\AppData\Local\Android\Sdk\platform-tools
+
+7. Cloning the Repository
+- Command: `git clone https://github.com/OleksiiRash/theScore.git`
+
 ### **Running the Tests**
 
 #### Configuration
@@ -39,11 +104,51 @@ Before running the tests, set up the following device emulator:
 * **Density:** 560 dpi
 * **OS Version:** Android 8.0 (Oreo, x86)
 
+- Ensure the theScore.apk set-upped on the device.
+- Ensure the Appium server is running.
+- Start the Android emulator or connect an Android device.
+- Navigate to the root directory of the project.
+
 ### **Test Execution**
 The project includes two feature files for testing:
 
 * **Welcome.feature**: Validates the app's first-time launch sequence.
 * **Leagues.feature**: Regular testing for the app's primary functionalities.
+
+#### **Initial App Launch (Welcome.feature)**
+
+**Important:** If you decide to run instead the `Leagues.feature` using the `@leagues` tag for the first time, please ensure to manually launch the app on the connected Android device to complete any initial setup or registration process required by the application.
+
+**To run the welcome sequence tests:**
+
+To run the welcome sequence tests, you will need to modify the `tags` option in the `RunnerClass`:
+
+1. Navigate to the `RunnerClass` file located at `src/test/java/runners/RunnerClass.java`.
+2. Change the `tags` attribute in `@CucumberOptions` to `@welcome`.
+3. Save the changes.
+4. Open the command prompt or terminal.
+5. Navigate to the root directory of the project.
+6. Execute the tests using Maven with the command:
+
+`mvn clean test`
+
+This command will trigger the test runner to execute only the tests marked with the `@welcome` tag.
+
+#### **League Tests (Leagues.feature)**
+
+**To run the league-related tests:**
+
+1. Make sure the app has been launched manually on your device if this is the first run (if you did not launch the Welcome.feature before).
+2. Navigate to the `RunnerClass` file located at `src/test/java/runners/RunnerClass.java`.
+3. Change the `tags` attribute in `@CucumberOptions` to `@leagues`.
+4. Save the changes.
+5. Open the command prompt or terminal.
+6. Navigate to the root directory of the project.
+7. Execute the tests using Maven with the command:
+
+`mvn clean test`
+
+**Note**: The `dryRun` option is currently set to `false`, which means that the tests will be executed. If you want to ensure that the Cucumber steps are well-defined without actually running the tests, you can set `dryRun` to `true` temporarily.
 
 ### **Test Structure and Design**
 
