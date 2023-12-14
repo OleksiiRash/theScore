@@ -13,7 +13,8 @@ import org.junit.runner.RunWith;
         tags = "@leagues",
         //strict=true,
         //monochrome = true,
-        plugin = {"pretty", "html:target/cucumber.html", "json:target/cucumber.json"}
+        plugin = {"pretty", "html:target/cucumber.html", "json:target/cucumber.json",
+                "rerun:target/failed.txt"}
 )
 public class RunnerClass {
 
