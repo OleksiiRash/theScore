@@ -119,7 +119,7 @@ The project includes two feature files for testing:
 
 **Important:** If you decide to run instead the `Leagues.feature` using the `@leagues` tag for the first time, please ensure to manually launch the app on the connected Android device to complete any initial setup or registration process required by the application.
 
-**To run the welcome sequence tests:**
+**To run the welcome sequence test:**
 
 To run the welcome sequence tests, you will need to modify the `tags` option in the `RunnerClass`:
 
@@ -130,7 +130,7 @@ To run the welcome sequence tests, you will need to modify the `tags` option in 
 5. Navigate to the root directory of the project.
 6. Execute the tests using Maven with the command:
 
-`mvn clean test`
+`mvn test -Dcucumber.filter.tags="@welcome"`
 
 This command will trigger the test runner to execute only the tests marked with the `@welcome` tag.
 
@@ -138,7 +138,7 @@ This command will trigger the test runner to execute only the tests marked with 
 
 **To run the league-related tests:**
 
-1. Make sure the app has been launched manually on your device if this is the first run (if you did not launch the Welcome.feature before).
+1. Make sure the app has been launched manually on your device if this is the first run (if you did not launch the Welcome.feature before). When you launch it go via the all set-upping steps and then when the main dashboard appear just close it and relaunch this test.
 2. Navigate to the `RunnerClass` file located at `src/test/java/runners/RunnerClass.java`.
 3. Change the `tags` attribute in `@CucumberOptions` to `@leagues`.
 4. Save the changes.
@@ -146,7 +146,7 @@ This command will trigger the test runner to execute only the tests marked with 
 6. Navigate to the root directory of the project.
 7. Execute the tests using Maven with the command:
 
-`mvn clean test`
+`mvn test -Dcucumber.filter.tags="@leagues"`
 
 **Note**: The `dryRun` option is currently set to `false`, which means that the tests will be executed. If you want to ensure that the Cucumber steps are well-defined without actually running the tests, you can set `dryRun` to `true` temporarily.
 
