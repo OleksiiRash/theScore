@@ -130,7 +130,7 @@ To run the welcome sequence tests, you will need to modify the `tags` option in 
 5. Navigate to the root directory of the project.
 6. Execute the tests using Maven with the command:
 
-`mvn test -Dcucumber.filter.tags="@welcome"`
+`mvn test`
 
 This command will trigger the test runner to execute only the tests marked with the `@welcome` tag.
 
@@ -146,7 +146,7 @@ This command will trigger the test runner to execute only the tests marked with 
 6. Navigate to the root directory of the project.
 7. Execute the tests using Maven with the command:
 
-`mvn test -Dcucumber.filter.tags="@leagues"`
+`mvn test`
 
 **Note**: The `dryRun` option is currently set to `false`, which means that the tests will be executed. If you want to ensure that the Cucumber steps are well-defined without actually running the tests, you can set `dryRun` to `true` temporarily.
 
