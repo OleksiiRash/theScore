@@ -73,6 +73,7 @@ public class WelcomePage extends CommonMethods {
 
     String elementXPathTemplate = "//*[@text='%s']";
 
+    //old method - need to be deleted
     public MobileElement selectElement(String elementName) {
         WebDriverWait wait = new WebDriverWait(driver, 5);
         String xpath = String.format("//android.widget.TextView[@text='%s']", elementName);
@@ -130,6 +131,7 @@ public class WelcomePage extends CommonMethods {
     }
 
 
+    //old method - need to be deleted
     private void scrollToElement(MobileElement element) {
         TouchAction touchAction = new TouchAction(driver);
         int startX = element.getLocation().getX() + element.getSize().getWidth() / 2;
