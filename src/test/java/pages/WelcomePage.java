@@ -73,7 +73,7 @@ public class WelcomePage extends CommonMethods {
     String elementXPathTemplate = "//*[@text='%s']";
 
     public MobileElement selectElement(String elementName) {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 5);
         String xpath = String.format("//android.widget.TextView[@text='%s']", elementName);
         MobileElement element = (MobileElement) wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
 
@@ -84,6 +84,19 @@ public class WelcomePage extends CommonMethods {
 
         // Check if the element is clickable
         wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
+        return element;
+    }
+
+    public MobileElement selectElementNoWait(String elementName) {
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        String xpath = String.format("//android.widget.TextView[@text='%s']", elementName);
+        MobileElement element = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+
+        if (!element.isDisplayed()) {
+            scrollToElement(element);
+        }
+
         element.click();
         return element;
     }

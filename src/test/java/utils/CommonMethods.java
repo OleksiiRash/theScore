@@ -30,7 +30,7 @@ public class CommonMethods extends PageInitializer {
         try {
             URL u = new URL(ConfigReader.getProperty("AppiumServerURL"));
             driver = new AppiumDriver(u, capabilities);
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
             System.out.println("App Launched");
 
             initializePageObjects();
