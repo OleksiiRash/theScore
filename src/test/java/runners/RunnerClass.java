@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features/",
         glue = "steps",
         dryRun = false,
-        tags = "@leagues",
+        tags = "@welcome",
         //strict=true,
         //monochrome = true,
         plugin = {"pretty", "html:target/cucumber.html", "json:target/cucumber.json",

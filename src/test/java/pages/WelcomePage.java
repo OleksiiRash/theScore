@@ -1,5 +1,6 @@
 package pages;
 
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -36,7 +37,7 @@ public class WelcomePage extends CommonMethods {
     @AndroidFindBy(id = "img_location")
     public MobileElement locationPopup;
 
-    @AndroidFindBy(id ="btn_disallow")
+    @AndroidFindBy(id = "btn_disallow")
     public MobileElement noLocation;
 
     @AndroidFindBy(id = "btn_allow")
@@ -88,18 +89,46 @@ public class WelcomePage extends CommonMethods {
         return element;
     }
 
-    public MobileElement selectElementNoWait(String elementName) {
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-        String xpath = String.format("//android.widget.TextView[@text='%s']", elementName);
-        MobileElement element = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+    public MobileElement selectElementNew(String elementName) {
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        MobileElement element = null;
 
-        if (!element.isDisplayed()) {
-            scrollToElement(element);
+        try {
+            scrollToElementNew(elementName);
+            String xpath = String.format("//android.widget.TextView[@text='%s']", elementName);
+            element = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+
+            element.click();
+
+        } catch (Exception e) {
+            System.out.println("Element with name '" + elementName + "' not found or not clickable");
         }
 
-        element.click();
         return element;
     }
+
+    public MobileElement selectElementNewNoWait(String elementName) {
+        MobileElement element = null;
+
+        try {
+            scrollToElementNew(elementName);
+            String xpath = String.format("//android.widget.TextView[@text='%s']", elementName);
+            element = (MobileElement) driver.findElement(By.xpath(xpath));
+            element.click();
+
+        } catch (Exception e) {
+            System.out.println("Element with name '" + elementName + "' not found or not clickable");
+        }
+
+        return element;
+    }
+
+    private void scrollToElementNew(String elementText) {
+        driver.findElement(MobileBy.AndroidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true))" +
+                        ".scrollIntoView(new UiSelector().text(\"" + elementText + "\"))"));
+    }
+
 
     private void scrollToElement(MobileElement element) {
         TouchAction touchAction = new TouchAction(driver);
@@ -114,6 +143,7 @@ public class WelcomePage extends CommonMethods {
                 .release()
                 .perform();
     }
+
 
     public void closePopup() {
         By closeButtonLocator = By.id("dismiss_modal");

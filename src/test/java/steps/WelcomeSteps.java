@@ -24,13 +24,13 @@ public class WelcomeSteps extends CommonMethods {
 
     @When("I click on the {string} button")
     public void i_click_on_the_button(String btnName) {
-        welcomePage.selectElement(btnName);
+        welcomePage.selectElementNew(btnName);
     }
 
     @Then("the {string} page is displayed")
     public void the_page_is_displayed(String page) {
         welcomePage.handleLocationPopup("later"); // handling with location pop-up
-        MobileElement favoritePage = welcomePage.selectElement(page);
+        MobileElement favoritePage = welcomePage.selectElementNew(page);
         Assert.assertTrue(page + "page not displayed", favoritePage.isDisplayed());
     }
 
@@ -39,7 +39,7 @@ public class WelcomeSteps extends CommonMethods {
         List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
         for (Map<String, String> row : rows) {
             String league = row.get("League");
-            welcomePage.selectElement(league);
+            welcomePage.selectElementNew(league);
         }
     }
 
@@ -54,7 +54,7 @@ public class WelcomeSteps extends CommonMethods {
         List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
         for (Map<String, String> row : rows) {
             String team = row.get("Team");
-            welcomePage.selectElement(team);
+            welcomePage.selectElementNew(team);
         }
     }
 
@@ -65,7 +65,7 @@ public class WelcomeSteps extends CommonMethods {
 
     @When("I press {string}")
     public void i_press(String doneBtn) {
-        welcomePage.selectElement(doneBtn);
+        welcomePage.selectElementNew(doneBtn);
     }
 
     @Then("a pop-up is displayed")
