@@ -1,4 +1,18 @@
 -------------------------------------------------------------------------------
 Test set: runners.RunnerClass
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 49.95 s -- in runners.RunnerClass
+Tests run: 6, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 182.4 s <<< FAILURE! -- in runners.RunnerClass
+Enhanced Navigation and Verification of League Pages and Sub-Tabs.Navigate and verify league pages, interact with sub-tabs, and perform specific actions #1 -- Time elapsed: 19.23 s <<< FAILURE!
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertTrue(Assert.java:53)
+	at steps.LeaguesSteps.the_page_is_displayed_correctly(LeaguesSteps.java:45)
+	at ✽.the "NBA" page is displayed correctly(file:///C:/Users/alexe/IdeaProjects/theScore/src/test/resources/features/Leagues.feature:9)
+
+Enhanced Navigation and Verification of League Pages and Sub-Tabs.Navigate and verify league pages, interact with sub-tabs, and perform specific actions #4 -- Time elapsed: 30.39 s <<< FAILURE!
+java.lang.AssertionError: Stats tab is not found, navigating back.
+	at org.junit.Assert.fail(Assert.java:89)
+	at steps.LeaguesSteps.the_tab_is_displayed_correctly(LeaguesSteps.java:114)
+	at ✽.the "STATS" tab is displayed correctly(file:///C:/Users/alexe/IdeaProjects/theScore/src/test/resources/features/Leagues.feature:16)
+

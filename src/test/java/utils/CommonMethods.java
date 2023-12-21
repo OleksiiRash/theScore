@@ -41,4 +41,11 @@ public class CommonMethods extends PageInitializer {
 
     }
 
+
+    public static void closeMobileApp() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+
 }

@@ -3,8 +3,7 @@ Feature: Welcome Sequence Navigation with Customizable League and Team Selection
 
   Scenario Outline: Successfully navigating through the welcome sequence with user-defined league and team selections
 
-    Given the theScore app is launched first time
-    Then the welcome page is displayed
+    Given the welcome page is displayed
 
     When I click on the "Get Started" button
     Then the "Choose your favorite leagues" page is displayed

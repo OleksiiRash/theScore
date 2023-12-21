@@ -12,12 +12,7 @@ import java.util.Map;
 
 public class WelcomeSteps extends CommonMethods {
 
-    @Given("the theScore app is launched first time")
-    public void the_app_is_launched() {
-        launchTheApp();
-    }
-
-    @Then("the welcome page is displayed")
+    @Given("the welcome page is displayed")
     public void the_welcome_page_is_displayed() {
         Assert.assertTrue("Welcome text is not displayed", welcomePage.welcomeTxt.isDisplayed());
     }

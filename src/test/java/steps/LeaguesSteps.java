@@ -10,18 +10,10 @@ import utils.CommonMethods;
 
 public class LeaguesSteps extends CommonMethods {
 
-    @Given("theScore app is launched on the device")
-    public void the_score_app_is_launched_on_the_device() {
-        launchTheApp();
-
-        try {
-            By closeButtonLocator = By.id("dismiss_modal");
-            if (!driver.findElements(closeButtonLocator).isEmpty()) {
-                welcomePage.closePopup();
-                System.out.println("Closed the popup");
-            }
-        } catch (Exception e) {
-            System.out.println("An error occurred while checking or closing the popup: " + e.getMessage());
+    @Given("I navigate to the {string} page")
+    public void i_navigate_to_the_page(String pageName) {
+        if (pageName.equals("Leagues")) {
+            leaguesPage.navigationLeaguesButton.click();
         }
     }
 
@@ -40,13 +32,6 @@ public class LeaguesSteps extends CommonMethods {
             }
         } catch (Exception e) {
             System.out.println("An error occurred while checking the spotlight element: " + e.getMessage());
-        }
-    }
-
-    @Then("I navigate to the {string} page")
-    public void i_navigate_to_the_page(String pageName) {
-        if (pageName.equals("Leagues")) {
-            leaguesPage.navigationLeaguesButton.click();
         }
     }
 

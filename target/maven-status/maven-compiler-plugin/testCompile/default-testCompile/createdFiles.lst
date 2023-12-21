@@ -7,4 +7,5 @@ pages\ProfilePage.class
 steps\WelcomeSteps.class
 pages\LeaguesPage.class
 pages\WelcomePage.class
+steps\Hooks.class
 steps\PageInitializer.class

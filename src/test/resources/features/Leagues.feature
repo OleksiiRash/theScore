@@ -2,8 +2,8 @@
 Feature: Enhanced Navigation and Verification of League Pages and Sub-Tabs
 
   Scenario Outline: Navigate and verify league pages, interact with sub-tabs, and perform specific actions
-    Given theScore app is launched on the device
-    Then I navigate to the "Leagues" page
+
+    Given I navigate to the "Leagues" page
     When I check for the Spotlight Betting News
     And I navigate to the "<LeagueName>" new page
     Then the "<LeagueName>" page is displayed correctly
