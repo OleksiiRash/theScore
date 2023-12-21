@@ -1,8 +1,6 @@
 package steps;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
+import io.cucumber.java.*;
 import org.openqa.selenium.By;
 import utils.CommonMethods;
 
@@ -23,9 +21,13 @@ public class Hooks extends CommonMethods {
         }
     }
 
-
     @After
-    public void afterScenario() {
+    public void end(Scenario scenario) {
+        byte[] pic;
+        String scenarioName = scenario.getName().replaceAll(" ", "_") + "_" + scenario.getStatus();
+        byte[] screenshot = takeScreenshot(scenarioName);
+        scenario.attach(screenshot, "image/png", scenarioName);
+
         closeMobileApp();
     }
 

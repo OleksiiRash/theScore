@@ -2,15 +2,27 @@ package utils;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.cucumber.java.*;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import steps.PageInitializer;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class CommonMethods extends PageInitializer {
+
     public static AppiumDriver driver;
 
     public static void launchTheApp() {
@@ -41,11 +53,35 @@ public class CommonMethods extends PageInitializer {
 
     }
 
-
     public static void closeMobileApp() {
         if (driver != null) {
             driver.quit();
         }
     }
+
+    public byte[] takeScreenshot(String name) {
+        TakesScreenshot ts = (TakesScreenshot) driver;
+        byte[] picBytes = ts.getScreenshotAs(OutputType.BYTES);
+        File file = ts.getScreenshotAs(OutputType.FILE);
+
+        try {
+            String filePath = Constants.SCREENSHOT_FOLDER_PATH + name + "_" +
+                    getTimeStamp("yyyy-MM-dd-HH-mm") + ".png";
+            FileUtils.copyFile(file, new File(filePath));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return picBytes;
+    }
+
+    public static String getTimeStamp(String pattern) {
+        var date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        return sdf.format(date);
+    }
+
+
+
+
 
 }

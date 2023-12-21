@@ -17,6 +17,7 @@ public class WelcomeSteps extends CommonMethods {
         Assert.assertTrue("Welcome text is not displayed", welcomePage.welcomeTxt.isDisplayed());
     }
 
+
     @When("I click on the {string} button")
     public void i_click_on_the_button(String btnName) {
         welcomePage.selectElementNewNoWait(btnName);
