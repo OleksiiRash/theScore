@@ -1,5 +1,6 @@
 package steps;
 
+import io.appium.java_client.MobileElement;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -83,7 +84,7 @@ public class LeaguesSteps extends CommonMethods {
     @When("I navigate to the {string} tab")
     public void i_navigate_to_the_tab(String tab) {
         try {
-            if (leaguesPage.horizontalScrollView.findElement(By.xpath("//*[contains(@content-desc, 'Stats')]")).isDisplayed()) {
+            if (leaguesPage.statsTab.isDisplayed()) {
                 leaguesPage.statsTab.click();
             } else {
                 leaguesPage.backNavigation.click();
@@ -98,8 +99,7 @@ public class LeaguesSteps extends CommonMethods {
     @Then("the {string} tab is displayed correctly")
     public void the_tab_is_displayed_correctly(String expectedTab) {
         try {
-            // Check if the statsTab is displayed within the HorizontalScrollView
-            if (leaguesPage.horizontalScrollView.findElement(By.xpath("//*[contains(@content-desc, 'Stats')]")).isDisplayed()) {
+            if (leaguesPage.statsTab.isDisplayed()) {
                 String actualActiveTab = leaguesPage.getCurrentSubTabName();
                 boolean isCorrectTab = actualActiveTab != null && actualActiveTab.contains("STATS");
                 Assert.assertTrue("Expected active tab to contain 'STATS', but found: '" + actualActiveTab + "'", isCorrectTab);
