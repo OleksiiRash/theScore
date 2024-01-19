@@ -2,7 +2,7 @@
 
 ### **Project Overview**
 
-It is a robust and efficient test automation framework developed from scratch, integrating Data-Driven Testing (DDT) and Page Object Model (POM) methodologies. This framework is designed to automate testing for theScore mobile application, offering high scalability and maintainability for comprehensive test coverage.
+Developed from scratch for a technical challenge, this robust and efficient test automation framework combines Data-Driven Testing and Page Object Model methodologies, focusing on key functions of theScore app. It offers high scalability and maintainability, designed to automate crucial testing areas, ensuring comprehensive coverage.
 
 * The test suite focuses on key functionalities as specified in the technical challenge guide, without aiming for exhaustive coverage of the app’s features.
 
